@@ -16,7 +16,11 @@ console.log(list);
     <>
       <h1>{data}</h1>
       {list.forEach((item) => item)}
-      {list.map((item) => item)}
+      
+      {list.map((item) =>
+      {
+      <h1>hello{item}</h1>
+      })}
     </>
   )
 }
