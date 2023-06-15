@@ -1,44 +1,40 @@
-import {useRef,useState} from "react";
-function App(){
-  return(
+import { useState } from "react";
+function App() {
+  return (
     <>
-    <h1>Stateful List</h1>
-    <ListDemo/>
+      <h1>My ToDo</h1>
+      <MyTodo />
     </>
-  )
+  );
 }
 
-function ListDemo(){
-  let inputElement=useRef();
-  let [list,setList]= useState(["Delhi"]);
+function MyTodo() {
+  let [todo, setTodo] = useState({ task: "", desc: "" });
+  let handleChangeTaskAction = (e) =>{
+      //console.log(e.target);
 
-  let addItemAction = () => {
+      let newTodo ={...todo,task: e.target.value};
+      setTodo(newTodo);
 
-    // let inputElement=document.querySelector("#id1");
-    let inputValue=inputElement.current.value
-    let newList = [inputValue,...list];
-    setList(newList);
+  }
 
-    inputElement.value="";
-  };
-return(
-  <>
-  <input type="text" ref={inputElement} id="id1" placeholder="Enter user input" />
-  <input type="button" value="Add New item" onClick={addItemAction} />
-  {list.map((item)=>(
-    <div >
-    <h1>{item}</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque obcaecati reprehenderit quasi quod eligendi deleniti blanditiis, suscipit rem modi! Veniam accusamus earum neque nostrum. Voluptatem repellendus voluptatibus, voluptate atque commodi culpa, autem tempora ratione nulla omnis ipsam totam deserunt nemo.</p>
-    <div>
-      <input type="button" value="&#128077;" />
-      <input type="button" value="&#128078;" />
-    </div>
-    </div>
-  ))}
-  </>
-);
-  
+
+  let addTodoAction=() =>{
+    alert(todo.task);
+  }
+
+  return (
+    <>
+      <input
+        clasaName="form-control"
+        type="text"
+        placeholder="Enter task"
+        value={todo.task}
+        onChange={handleChangeTaskAction}
+      />
+
+      <input type="button" value="Add Todo" onClick={addTodoAction} />
+    </>
+  );
 }
-
-
 export default App;
