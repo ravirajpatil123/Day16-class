@@ -14,13 +14,15 @@ function ListDemo(){
   let addItemAction = () => {
     let inputElement=document.querySelector("#id1");
     let inputValue=inputElement.value
-    let newList = [...list,inputValue];
+    let newList = [inputValue,...list];
     setList(newList);
+
+    inputElement.value="";
   };
 return(
   <>
-  <input type="text" id="id1" placeholder="whatsup..." />
-  <input type="button" value="Add New Item" onClick={addItemAction} />
+  <input type="text" id="id1" placeholder="Enter user input" />
+  <input type="button" value="Add New item" onClick={addItemAction} />
   {list.map((item)=>(
     <h1>{item}</h1>
   ))}
